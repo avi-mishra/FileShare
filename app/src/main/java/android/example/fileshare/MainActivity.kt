@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -29,7 +30,12 @@ class MainActivity : AppCompatActivity(),ClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        if(firebaseUser==null)
+        {
+            val i=Intent(this,LogIn::class.java)
+            startActivity(i)
+            finish()
+        }
         adapter= FileAdapter(files, this)
         var fileRef=dbRef.collection("files")
             .orderBy("currentTimeMs", Query.Direction.DESCENDING)

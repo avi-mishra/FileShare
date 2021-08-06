@@ -50,23 +50,34 @@ class LogIn : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         if (result.resultCode == RESULT_OK) {
             // Successfully signed in
+            Log.d("userDisplayName", "onSignInResult: ${user?.displayName}")
             if(user?.displayName!=null){
                 Toast.makeText(this@LogIn, "Logging In", Toast.LENGTH_SHORT).show()
                 homeActivity()
             }
             else {
-                val profileUpdates = UserProfileChangeRequest.Builder()
-                    .setDisplayName("Anonymous")
-                    .build()
-
-                user?.updateProfile(profileUpdates)
-                    ?.addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d("AnonymousUser", "User profile updated.")
-                        }
-                    }
-                Toast.makeText(this@LogIn, "Logging In", Toast.LENGTH_SHORT).show()
-                homeActivity()
+                val i2=Intent(this@LogIn,UsernameActivity::class.java)
+                startActivity(i2)
+                finish()
+//                val i =intent.getStringExtra("username")
+//                Log.d("username", "onSignInResult: $i")
+//                val profileUpdates = UserProfileChangeRequest.Builder()
+//                    .setDisplayName("$i")
+//                    .build()
+//
+//                user?.updateProfile(profileUpdates)
+//                    ?.addOnCompleteListener { task ->
+//                        if (task.isSuccessful) {
+//                            Log.d("AnonymousUser", "User profile updated.")
+//                        }
+//                    }
+//                if(i!=null){
+//                    Toast.makeText(this@LogIn, "Logging In", Toast.LENGTH_SHORT).show()
+//                    homeActivity()
+//                }
+//                else {
+//                    Toast.makeText(this@LogIn, "username error", Toast.LENGTH_SHORT).show()
+//                }
             }
         } else {
             if (response == null) {

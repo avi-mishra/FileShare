@@ -59,25 +59,6 @@ class LogIn : AppCompatActivity() {
                 val i2=Intent(this@LogIn,UsernameActivity::class.java)
                 startActivity(i2)
                 finish()
-//                val i =intent.getStringExtra("username")
-//                Log.d("username", "onSignInResult: $i")
-//                val profileUpdates = UserProfileChangeRequest.Builder()
-//                    .setDisplayName("$i")
-//                    .build()
-//
-//                user?.updateProfile(profileUpdates)
-//                    ?.addOnCompleteListener { task ->
-//                        if (task.isSuccessful) {
-//                            Log.d("AnonymousUser", "User profile updated.")
-//                        }
-//                    }
-//                if(i!=null){
-//                    Toast.makeText(this@LogIn, "Logging In", Toast.LENGTH_SHORT).show()
-//                    homeActivity()
-//                }
-//                else {
-//                    Toast.makeText(this@LogIn, "username error", Toast.LENGTH_SHORT).show()
-//                }
             }
         } else {
             if (response == null) {
@@ -92,26 +73,6 @@ class LogIn : AppCompatActivity() {
             Toast.makeText(this@LogIn, "Please Wait", Toast.LENGTH_SHORT).show()
         }
     }
-    //confirming username
-   /* private fun confirmName(user: FirebaseUser)
-    {
-//        var c=0
-//        val intent=Intent(this@LogIn,ConfirmName::class.java)
-//        startActivity(intent)
-//        val i=Intent().getStringExtra("NameConfirmed")
-//        Log.d("UpdatedName", i!!)
-
-        val profileUpdates = UserProfileChangeRequest.Builder()
-            .setDisplayName("Anonymous")
-            .build()
-
-        user.updateProfile(profileUpdates)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d("UpdatedProfile", "User profile updated.")
-                }
-            }
-    }*/
     private fun homeActivity() {
         val i= Intent(this@LogIn, MainActivity::class.java)
         startActivity(i)

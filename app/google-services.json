@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "488965337938",
+    "project_id": "fileshare-5097d",
+    "storage_bucket": "fileshare-5097d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488965337938:android:f2f0f2d24050e5aead808b",
+        "android_client_info": {
+          "package_name": "android.example.fileshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488965337938-n345la7lrn4e187s26f1l11t47627l8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARp8N9rHPs33ftSwSkeFqy-ZiqWr54Gg8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488965337938-n345la7lrn4e187s26f1l11t47627l8d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

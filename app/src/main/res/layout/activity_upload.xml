@@ -13,23 +13,23 @@
         android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnUploadFile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="70dp"
-        android:layout_marginLeft="25dp"
-        android:layout_gravity="center_horizontal"
-        android:text="Upload File"
-        android:backgroundTint="@color/teal_700"/>
+        <Button
+            android:id="@+id/btnUploadFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="70dp"
+            android:layout_marginLeft="25dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Upload File"
+            android:backgroundTint="@color/teal_700"/>
 
-    <Button
-        android:id="@+id/btnUploadImages"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Upload Image"
-        android:backgroundTint="@color/teal_700"/>
+        <Button
+            android:id="@+id/btnUploadImages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Upload Image"
+            android:backgroundTint="@color/teal_700"/>
     </LinearLayout>
 
     <LinearLayout
@@ -38,42 +38,60 @@
         android:layout_height="match_parent"
         android:visibility="gone"
         android:orientation="vertical">
-    <Button
-        android:id="@+id/btnChooseFile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="choose File"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="10dp"
-        android:backgroundTint="@color/teal_700"/>
+        <Button
+            android:id="@+id/btnChooseFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="choose File"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@color/teal_700"/>
 
-    <TextView
-        android:id="@+id/tvSelectedFileUrl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:hint="The selected file Url shows here."
-        android:textSize="20sp"
-        />
+        <TextView
+            android:id="@+id/tvSelectedFileUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:hint="The selected file Url shows here."
+            android:textSize="20sp"
+            />
 
-    <EditText
-        android:id="@+id/etFileName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Write the File Name."
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"/>
+        <EditText
+            android:id="@+id/etFileName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Write the File Name."
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
 
-    <Button
-        android:id="@+id/btnUploadFileToFirebase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Upload"
-        android:backgroundTint="@color/teal_700"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnUploadFileToFirebasePublic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Public Upload"
+                android:layout_marginLeft="20dp"
+                android:backgroundTint="@color/teal_700"/>
+
+            <Button
+                android:id="@+id/btnUploadFileToFirebasePrivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Private Upload"
+                android:backgroundTint="@color/teal_700"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -108,13 +126,29 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
-        <Button
-            android:id="@+id/btnUploadImageToFirebase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Upload"
-            android:backgroundTint="@color/teal_700"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnUploadImgToFirebasePublic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Public Upload"
+                android:layout_marginLeft="20dp"
+                android:backgroundTint="@color/teal_700"/>
+
+            <Button
+                android:id="@+id/btnUploadImgToFirebasePrivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Private Upload"
+                android:backgroundTint="@color/teal_700"/>
+        </LinearLayout>
 
     </LinearLayout>
 

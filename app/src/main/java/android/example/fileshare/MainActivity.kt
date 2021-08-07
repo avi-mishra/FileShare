@@ -82,6 +82,10 @@ class MainActivity : AppCompatActivity(),ClickListener {
                 startActivity(i)
                 finish()
             }
+            R.id.navPrivateFile->{
+                val i =Intent(this@MainActivity,PrivateFileActivity::class.java)
+                startActivity(i)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

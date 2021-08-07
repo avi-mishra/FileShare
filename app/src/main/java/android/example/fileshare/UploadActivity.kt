@@ -48,20 +48,22 @@ class UploadActivity : AppCompatActivity() {
 
         btnUploadFile.setOnClickListener {
             llFile.isVisible=true
-            uploadfile()
+            uploadFilePublic()
+            uploadFilePrivate()
         }
         btnUploadImages.setOnClickListener {
             llImage.isVisible=true
-            uploadImage()
+            uploadImagePublic()
+            uploadImagePrivate()
         }
     }
 
-    fun uploadfile(){
+    fun uploadFilePublic(){
 
         btnChooseFile.setOnClickListener {
             resultFile.launch("application/*")
         }
-        btnUploadFileToFirebase.setOnClickListener {
+        btnUploadFileToFirebasePublic.setOnClickListener {
             val fileName=etFileName.text.toString()
             if (fileUrl != null && fileName.length>0) {
                 val fileRef = storageRef.child("files/${System.currentTimeMillis()}${getExtension(fileUrl!!)}")
@@ -95,13 +97,87 @@ class UploadActivity : AppCompatActivity() {
                         .show()
             }
         }
-
     }
-    fun uploadImage() {
+    fun uploadFilePrivate(){
+
+        btnChooseFile.setOnClickListener {
+            resultFile.launch("application/*")
+        }
+        btnUploadFileToFirebasePrivate.setOnClickListener {
+            val fileName=etFileName.text.toString()
+            if (fileUrl != null && fileName.length>0) {
+                val fileRef = storageRef.child("files/${System.currentTimeMillis()}${getExtension(fileUrl!!)}")
+                fileRef.putFile(fileUrl!!).continueWithTask { photoUploadTask ->
+                    fileRef.downloadUrl
+                }.continueWithTask { downloadUrlTask ->
+                    val file = getExtension(fileUrl!!)?.let { it1 ->
+                        PrivateFile(
+                                System.currentTimeMillis(),
+                                it1,
+                                fileName,
+                                downloadUrlTask.result.toString(),
+                                signedInUser!!
+                        )
+                    }
+                    dbRef.collection("privateFiles").add(file!!)
+                }.addOnCompleteListener { postCreationTask ->
+                    if (!postCreationTask.isSuccessful) {
+                        Toast.makeText(
+                                this@UploadActivity,
+                                "${postCreationTask.exception}",
+                                Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    val i = Intent(this@UploadActivity, MainActivity::class.java)
+                    startActivity(i)
+                    Toast.makeText(this@UploadActivity, "File Uploaded", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            } else {
+                Toast.makeText(this@UploadActivity, "Fields cannot be empty", Toast.LENGTH_SHORT)
+                        .show()
+            }
+        }
+    }
+    fun uploadImagePublic() {
         btnGallery.setOnClickListener {
             resultImage.launch("image/*")
         }
-        btnUploadImageToFirebase.setOnClickListener {
+        btnUploadImgToFirebasePublic.setOnClickListener {
+            val fileName=etImageName.text.toString()
+            if(imageUrl!=null){
+                val photoRef=storageRef.child("images/${System.currentTimeMillis()}-photo.jpg")
+                photoRef.putFile(imageUrl!!).continueWithTask { photoUploadTask->
+                    photoRef.downloadUrl
+                }.continueWithTask { downloadUrlTask->
+                    val file = PrivateFile(
+                                System.currentTimeMillis(),
+                                ".jpg",
+                                fileName,
+                                downloadUrlTask.result.toString(),
+                                signedInUser!!
+                        )
+                    dbRef.collection("privateFiles").add(file)
+                }.addOnCompleteListener { postCreationTask->
+                    if(!postCreationTask.isSuccessful) {
+                        Toast.makeText(this@UploadActivity,"${postCreationTask.exception}",Toast.LENGTH_SHORT).show()
+                    }
+                    val i=Intent(this@UploadActivity,MainActivity::class.java)
+                    startActivity(i)
+                    Toast.makeText(this@UploadActivity, "Image Uploaded", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }
+            else {
+                Toast.makeText(this@UploadActivity,"Image cannot be empty",Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    fun uploadImagePrivate() {
+        btnGallery.setOnClickListener {
+            resultImage.launch("image/*")
+        }
+        btnUploadImgToFirebasePrivate.setOnClickListener {
             val fileName=etImageName.text.toString()
             if(imageUrl!=null){
                 val photoRef=storageRef.child("images/${System.currentTimeMillis()}-photo.jpg")
@@ -109,19 +185,20 @@ class UploadActivity : AppCompatActivity() {
                     photoRef.downloadUrl
                 }.continueWithTask { downloadUrlTask->
                     val file = File(
-                                System.currentTimeMillis(),
-                                ".jpg",
-                                fileName,
-                                downloadUrlTask.result.toString(),
-                                signedInUser!!
-                        )
-                    dbRef.collection("files").add(file)
+                            System.currentTimeMillis(),
+                            ".jpg",
+                            fileName,
+                            downloadUrlTask.result.toString(),
+                            signedInUser!!
+                    )
+                    dbRef.collection("privateFiles").add(file)
                 }.addOnCompleteListener { postCreationTask->
                     if(!postCreationTask.isSuccessful) {
                         Toast.makeText(this@UploadActivity,"${postCreationTask.exception}",Toast.LENGTH_SHORT).show()
                     }
                     val i=Intent(this@UploadActivity,MainActivity::class.java)
                     startActivity(i)
+                    Toast.makeText(this@UploadActivity, "Image Uploaded", Toast.LENGTH_SHORT).show()
                     finish()
                 }
             }

@@ -157,7 +157,7 @@ class UploadActivity : AppCompatActivity() {
                                 downloadUrlTask.result.toString(),
                                 signedInUser!!
                         )
-                    dbRef.collection("privateFiles").add(file)
+                    dbRef.collection("files").add(file)
                 }.addOnCompleteListener { postCreationTask->
                     if(!postCreationTask.isSuccessful) {
                         Toast.makeText(this@UploadActivity,"${postCreationTask.exception}",Toast.LENGTH_SHORT).show()
